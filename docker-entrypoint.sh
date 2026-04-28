@@ -17,17 +17,9 @@ if [ "$(id -g node)" -ne "$PGID" ]; then
     usermod -g "$PGID" node
 fi
 
-# Create TMPDIR inside the persistent volume if it doesn't exist
-mkdir -p /paperclip/tmp
-
 # Always ensure the data volume is owned by node.
+# Fly.io volumes mount as root on first boot, and upstream's entrypoint only
+# chowns when UID/GID remapping happens — which it won't when both are 1000.
 chown -R node:node /paperclip
-
-# Fix generic permissions for the volume
-chmod -R 755 /paperclip
-
-# STRICT REQUIREMENT: Postgres data directory MUST be 0700
-# We look for any directory named 'db' inside the instances
-find /paperclip -type d -name "db" -exec chmod 700 {} +
 
 exec gosu node "$@"

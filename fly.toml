@@ -1,5 +1,5 @@
 # Fly.io app names are globally unique — pick your own
-app = "paperclip"
+app = "machi-paperclip"
 primary_region = "gru"
 
 [build]
@@ -15,7 +15,7 @@ primary_region = "gru"
   PAPERCLIP_DEPLOYMENT_MODE = "authenticated"
   PAPERCLIP_DEPLOYMENT_EXPOSURE = "public"
   PAPERCLIP_AUTH_BASE_URL_MODE = "explicit"
-  PAPERCLIP_AUTH_PUBLIC_BASE_URL = "https://paperclip.fly.dev"
+  PAPERCLIP_AUTH_PUBLIC_BASE_URL = "https://machi-paperclip.fly.dev"
   SERVE_UI = "true"
 
 [http_service]
