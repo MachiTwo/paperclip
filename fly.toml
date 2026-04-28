@@ -1,6 +1,6 @@
 # Fly.io app names are globally unique — pick your own
 app = "paperclip"
-primary_region = "sjc"
+primary_region = "gru"
 
 [build]
   dockerfile = "Dockerfile"
