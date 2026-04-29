@@ -20,6 +20,13 @@ fi
 # Create TMPDIR inside the persistent volume if it doesn't exist
 mkdir -p /paperclip/tmp
 
+# --- Development Environment Setup ---
+# Clone Vectora if it doesn't exist in the persistent volume
+if [ ! -d "/paperclip/Vectora" ]; then
+    echo "Cloning Vectora repository for development..."
+    git clone https://github.com/Kaffyn/Vectora /paperclip/Vectora
+fi
+
 # Always ensure the data volume is owned by node.
 chown -R node:node /paperclip
 
@@ -27,7 +34,6 @@ chown -R node:node /paperclip
 chmod -R 755 /paperclip
 
 # STRICT REQUIREMENT: Postgres data directory MUST be 0700
-# We look for any directory named 'db' inside the instances
 find /paperclip -type d -name "db" -exec chmod 700 {} +
 
 exec gosu node "$@"
